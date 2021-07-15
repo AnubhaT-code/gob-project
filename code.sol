@@ -19,7 +19,7 @@ contract ballot{
     
     mapping (address => voter)public voters;
     
-    mapping (address => contestant)public candidates;
+    mapping (uint => contestant)public candidates;
     
     constructor() public {
         
@@ -54,4 +54,20 @@ contract ballot{
         }));
         candcount++;
     }
+    
+    function candidate_registration_check() public ischairperson returns(bool){
+        candcount--;
+        for(uint i=0;i<candcount;i++){
+            candidates[candreg[i].symbol]=candreg[i];
+        }
+        return true;
+    }
+    
+    function voter_registration_check() public ischairperson returns(bool){
+        uint votercount=votereg.length;
+        for(uint i=0;i<votercount;i++){
+            voters[votereg[i].id]=votereg[i];
+        }
+        return true;
+    }   
 }
