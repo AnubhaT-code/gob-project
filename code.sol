@@ -69,4 +69,23 @@ contract ballot{
         }
         return true;
     }
+    
+    function vote_candidates( address person_voting )public{
+    
+        require(
+            !voters[person_voting].voted,
+            "The voter already voted."
+        );
+    
+        for ( uint i=1 ; i <= candreg.length ; i++ ){
+        if(candreg[i].symbol==voters[person_voting].choice){
+        candreg[i].count+=1;
+        voters[person_voting].voted=true;
+        }
+        }
+
+    }
+    
+   function result_declaration()public ischairperson return{ }
+    
 }
